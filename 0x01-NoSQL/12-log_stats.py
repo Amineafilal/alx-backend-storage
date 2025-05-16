@@ -17,7 +17,7 @@ def log_stats():
     methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
     for method in methods:
         method_count = logs_collection.count_documents({"method": method})
-        print(f"\tmethod {method}: {method_count}")
+        print(f"    method {method}: {method_count}")  # 4 spaces instead of \t
 
     # Count status check
     status_count = logs_collection.count_documents(

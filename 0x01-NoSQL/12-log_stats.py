@@ -10,9 +10,10 @@ def log_stats():
 
     print(f"{collection.count_documents({})} logs")
     print("Methods:")
-    for method in ["GET", "POST", "PUT", "PATCH", "DELETE"]:
+    methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
+    for method in methods:
         count = collection.count_documents({"method": method})
-        print(f"\tmethod {method}: {count}")
+        print("\tmethod {}: {}".format(method, count))  # MUST use tab char
 
     status_count = collection.count_documents({
         "method": "GET",

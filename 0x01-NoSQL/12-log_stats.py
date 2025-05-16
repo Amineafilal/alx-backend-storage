@@ -8,21 +8,22 @@ def log_stats():
     client = MongoClient('mongodb://127.0.0.1:27017')
     logs_collection = client.logs.nginx
 
-    # Count total logs
-    logs_count = logs_collection.count_documents({})
-    print(f"{logs_count} logs")
+    # Total logs
+    total_logs = logs_collection.count_documents({})
+    print(f"{total_logs} logs")
 
-    # Count methods
+    # Methods stats
     print("Methods:")
     methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
     for method in methods:
-        method_count = logs_collection.count_documents({"method": method})
-        print(f"    method {method}: {method_count}")  # 4 spaces instead of \t
+        count = logs_collection.count_documents({"method": method})
+        print(f"\tmethod {method}: {count}")  # MUST use tab character
 
-    # Count status check
-    status_count = logs_collection.count_documents(
-        {"method": "GET", "path": "/status"})
-    print(f"{status_count} status check")
+    # Specific status check
+    status_check = logs_collection.count_documents(
+        {"method": "GET", "path": "/status"}
+    )
+    print(f"{status_check} status check")
 
 
 if __name__ == "__main__":

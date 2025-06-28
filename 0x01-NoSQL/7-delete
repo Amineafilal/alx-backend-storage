@@ -1,2 +1,2 @@
-// Delete
-db.school.deleteMany({name: "Holberton school"})
+// my comment
+db.school.deleteMany({ "name": "ALX School" })

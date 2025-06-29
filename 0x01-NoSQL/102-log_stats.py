@@ -31,18 +31,9 @@ if __name__ == "__main__":
     
     # Top 10 IPs
     pipeline = [
-        {
-            "$group": {
-                "_id": "$ip",
-                "count": {"$sum": 1}
-            }
-        },
-        {
-            "$sort": {"count": -1}
-        },
-        {
-            "$limit": 10
-        }
+        {"$group": {"_id": "$ip", "count": {"$sum": 1}}},
+        {"$sort": {"count": -1}},
+        {"$limit": 10}
     ]
     
     top_ips = list(collection.aggregate(pipeline))
